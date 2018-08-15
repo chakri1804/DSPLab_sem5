@@ -12,12 +12,12 @@ int main(void){
   scanf("%lf %lf",&a,&b);
   // printf("%lf %lf \n",a,b);
   // printf("%lf,%lf",a,b);
-  int z = pow(2,precision);
-  printf("%d \n",z);
-  int a1 = a * pow(2,precision);
-  int b1 = b * pow(2,precision);
+  // int z = pow(2,precision);
+  // printf("%d \n",z);
+  int a1 = a * (1<<precision);
+  int b1 = b * (1<<precision);
   // printf("%d,%d",a1,b1);
   int c1 = a1+b1;
-  double c = c1/pow(2,precision);
+  double c = (double)c1/(1<<precision);
   printf("%lf \n",c);
 }
