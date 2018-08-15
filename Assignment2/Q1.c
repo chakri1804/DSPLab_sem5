@@ -5,7 +5,7 @@ int main(void){
   int precision;
   double a;
   double b;
-  printf("Give precision \n");
+  printf("Give number of bits assigned for decimal part \n");
   scanf("%d",&precision);
   // printf("%d \n",precision);
   printf("Give numbers to be added \n");
