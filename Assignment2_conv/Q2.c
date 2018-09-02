@@ -11,8 +11,8 @@ int main(void){
   short int a1[10];
   short int b1[10];
   for (short int i = 0; i < 10; i++) {
-    a1[i] = a[i]*(1<<10);
-    b1[i] = b[i]*(1<<10);
+    a1[i] = a[i]*(1<<14);
+    b1[i] = b[i]*(1<<14);
   }
   // for (int i = 0; i < 16; i++) {
   //   printf("A[%d]=%d\n",i,a1[i]);
@@ -33,7 +33,7 @@ int main(void){
     }
   }
   for (int i = 0; i < 10; i++) {
-    c1[i] = (double)(c[i]/(double)(1<<20));
+    c1[i] = (double)(c[i]/(double)(1<<28));
     printf("C[%d]=%lf\n",i,c1[i]);
   }
 }
