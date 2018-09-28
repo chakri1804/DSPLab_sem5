@@ -14,25 +14,23 @@ int main(void){
     a1[i] = a[i]*(1<<14);
     b1[i] = b[i]*(1<<14);
   }
-  // for (int i = 0; i < 16; i++) {
-  //   printf("A[%d]=%d\n",i,a1[i]);
-  //   if(i<10)
-  //   printf("B[%d]=%d\n",i,b1[i]);
-  // }
-  int c[10];
-  double c1[10];
-  for (int i = 0; i < 10; i++) {
+
+  int c[19];
+  int temp = 0;
+  double c1[19];
+  for (int i = 0; i < 19; i++) {
     c[i] = 0;
     c1[i] = 0;
   }
-  for(int i=0;i<10;i++){
+  for(int i=0;i<19;i++){
+    temp = 0;
     for(int j=0;j<10;j++){
-      if(i+j<10)
-      c[i] = c[i] + a1[j]*b1[i+j];
-      // printf("C[%d] = %d\n",i,c[i]);
+      if(j+i>=9 && j+i<19)
+      temp = temp + a1[j+i-9]*b1[j];
     }
+    c[i] = temp;
   }
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 19; i++) {
     c1[i] = (double)(c[i]/(double)(1<<28));
     printf("C[%d]=%lf\n",i,c1[i]);
   }
