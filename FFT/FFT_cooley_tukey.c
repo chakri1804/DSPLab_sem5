@@ -28,19 +28,19 @@ clx* fft(clx buf[],int n){
   return y;
 }
 
-void show(clx buf[], int n) {
-  int i;
-	for (i = 0; i < n; i++)
-		if (!cimag(buf[i]))
-			printf("%g ", creal(buf[i]));
-		else
-			printf("(%g, %g) ", creal(buf[i]), cimag(buf[i]));
-}
+// void show(clx buf[], int n) {
+//   int i;
+// 	for (i = 0; i < n; i++)
+// 		if (!cimag(buf[i]))
+// 			printf("%g ", creal(buf[i]));
+// 		else
+// 			printf("(%g, %g) ", creal(buf[i]), cimag(buf[i]));
+// }
 
 int main(void){
   clx input[] = {1,8,0,4,1,2,3,1};
   int lenght_input = 8;
-  clx *ans = (clx*)malloc((lenght_input)*sizeof(clx));
+  clx *ans;
   ans = fft(input,lenght_input);
-  show(ans,lenght_input);
+  // show(ans,lenght_input);
 }
