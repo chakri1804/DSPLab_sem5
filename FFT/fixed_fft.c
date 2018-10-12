@@ -2,7 +2,7 @@
 # include<stdlib.h>
 // # include<math.h>
 
-#define pi 3.141592653589793238462643383279502884
+// #define pi 3.141592653589793238462643383279502884
 #define q_fact 7
 
 struct compl{
@@ -51,8 +51,8 @@ struct compls *fft(struct compls x[],int N){
   Ye=fft(Ye,N/2);
   Yo=fft(Yo,N/2);
   for(k=0;k<N/2;k++){
-           w.real = (int)(w1[k*64/N].real*(1<<q_fact));
-            w.img = (int)(w1[k*64/N].img*(1<<q_fact));
+           w.real = (short int)(w1[k*64/N].real*(1<<q_fact));
+            w.img = (short int)(w1[k*64/N].img*(1<<q_fact));
         Y[k].real = Ye[k].real+((w.real)*(Yo[k].real)/(1<<q_fact)) -((w.img)*(Yo[k].img )/(1<<q_fact));
          Y[k].img = Ye[k].img +((w.real)*(Yo[k].img) /(1<<q_fact)) +((w.img)*(Yo[k].real)/(1<<q_fact));
     Y[k+N/2].real = Ye[k].real-((w.real)*(Yo[k].real)/(1<<q_fact)) +((w.img)*(Yo[k].img )/(1<<q_fact));
@@ -137,7 +137,7 @@ int main(){
                       {1.6574750183038587 ,1.636029531844986},
                       {0.7135066533871786 ,1.721461166512686}};
   int n = 64;
-  struct compls xs[n];
+  struct compls xs[64];
   int i;
   for(i=0;i<n;i++){
     xs[i].real = x[i].real*(1<<q_fact);
