@@ -33,14 +33,7 @@ struct compls *fft(struct compls x[],int N){
   if(N==1){
     return x;
   }
-  // short int temp1;
-  // short int temp2;
-  // struct compls wn;
-  // wn.real=(short int)(cos(2*pi/N)*(1<<7) );
-  // wn.img =(short int)(-sin(2*pi/N)*(1<<7));
   struct compls w;
-  // w.real=1*(1<<7);
-  // w.img=0;
   struct compls *Ye=(struct compls *)malloc((N/2)*sizeof(struct compls));
   struct compls *Yo=(struct compls *)malloc((N/2)*sizeof(struct compls));
   int i,k;
