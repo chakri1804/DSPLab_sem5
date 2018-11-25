@@ -1,9 +1,8 @@
 # include<stdio.h>
 # include<stdlib.h>
-// # include<math.h>
 
-// #define pi 3.141592653589793238462643383279502884
 #define q_fact 7
+short int f = (1<<q_fact);
 
 struct compl{
   float real;
@@ -51,16 +50,12 @@ struct compls *fft(struct compls x[],int N){
   Ye=fft(Ye,N/2);
   Yo=fft(Yo,N/2);
   for(k=0;k<N/2;k++){
-           w.real = (short int)(w1[k*64/N].real*(1<<q_fact));
-            w.img = (short int)(w1[k*64/N].img*(1<<q_fact));
-        Y[k].real = Ye[k].real+((w.real)*(Yo[k].real)/(1<<q_fact)) -((w.img)*(Yo[k].img )/(1<<q_fact));
-         Y[k].img = Ye[k].img +((w.real)*(Yo[k].img) /(1<<q_fact)) +((w.img)*(Yo[k].real)/(1<<q_fact));
-    Y[k+N/2].real = Ye[k].real-((w.real)*(Yo[k].real)/(1<<q_fact)) +((w.img)*(Yo[k].img )/(1<<q_fact));
-     Y[k+N/2].img = Ye[k].img -((w.real)*(Yo[k].img) /(1<<q_fact)) -((w.img)*(Yo[k].real)/(1<<q_fact));
-    //         temp1 = (w.real)*(wn.real)/(1<<7) - (w.img)*(wn.img) /(1<<7);
-    //         temp2 = (w.real)*(wn.img) /(1<<7) + (w.img)*(wn.real)/(1<<7);
-    // w.real=temp1;
-    // w.img=temp2;
+          w.real = (short int)_mpy(w1[k*64/N].real,f);
+          w.img = (short int)_mpy(w1[k*64/N].img,f);
+          Y[k].real = _add2(Ye[k].real,((w.real)*(Yo[k].real)/(1<<q_fact)) -((w.img)*(Yo[k].img )/(1<<q_fact)));
+          Y[k].img = _add(Ye[k].img,((w.real)*(Yo[k].img) /(1<<q_fact)) +((w.img)*(Yo[k].real)/(1<<q_fact)));
+          Y[k+N/2].real = _add(Ye[k].real,-((w.real)*(Yo[k].real)/(1<<q_fact)) +((w.img)*(Yo[k].img )/(1<<q_fact)));
+          Y[k+N/2].img = _add(Ye[k].img,-((w.real)*(Yo[k].img) /(1<<q_fact)) -((w.img)*(Yo[k].real)/(1<<q_fact)));
   }
   return Y;
 }
@@ -140,8 +135,8 @@ int main(){
   struct compls xs[64];
   int i;
   for(i=0;i<n;i++){
-    xs[i].real = x[i].real*(1<<q_fact);
-     xs[i].img = x[i].img*(1<<q_fact);
+    xs[i].real = x[i].real*f;
+    xs[i].img = x[i].img*f;
   }
   struct compls *X1;
   X1=fft(xs,64);
